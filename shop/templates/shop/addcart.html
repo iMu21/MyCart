@@ -1,0 +1,65 @@
+ {% extends 'shop/basic.html' %}
+{% load static %}
+{% block title %} Add To Cart {% endblock %}
+{% block body %}
+ <h1 style="color:green;text-align:center">{{prod.product_name}}</h1>
+ <h4 style="color:red;text-align:center">Product Price: {{prod.product_price}} Taka Only</h4>
+ <div>
+<!-- Grid row -->
+    <div class="row">
+      <!-- Grid column -->
+        <div class="col-md-5 mt-md-0 mt-3" style="margin-left:6rem;margin-bottom:3rem">
+            <form action="confirmBuying" method="post">
+                 {% csrf_token %}
+                <div class="form-group row">
+    <div class="col-sm-10">
+      <input name="prod_id" type="hidden" readonly class="form-control-plaintext" id="staticProdId" value="{{prod.id}}">
+    </div>
+  </div>
+                <div class="form-group row">
+    <div class="col-sm-10">
+      <input name="prod_price" type="hidden" readonly class="form-control-plaintext" id="staticProdPrice" value="{{prod.product_price}}">
+    </div>
+  </div>
+                <div class="form-group row">
+    <div class="col-sm-10">
+      <input name="prod_name" type="hidden" readonly class="form-control-plaintext" id="staticProdName" value="{{prod.product_name}}">
+    </div>
+  </div>
+                <div class="form-group">
+    <label for="exampleInputCustomerName">Customer Name</label>
+    <input type="text" name="customer_name" class="form-control" id="exampleInputCustomerName" placeholder="Enter Customer name">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Email address</label>
+    <input type="email" name="customer_email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+  </div>
+                <div class="form-group">
+    <label for="exampleInputMobile">Mobile Number</label>
+    <input type="text" name="customer_mobile" class="form-control" id="exampleInputMobile" aria-describedby="mobileHelp" placeholder="Enter mobile number">
+    <small id="mobileHelp" class="form-text text-muted">We'll never share your mobile number with anyone else.</small>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputAddress">Address</label>
+    <input type="text" name="customer_address" class="form-control" id="exampleInputAddress" placeholder="Enter Address">
+  </div>
+                <div class="form-group">
+    <label for="exampleInputProdQuan">Product Quantity</label>
+    <input type="number" name="prod_quantity" class="form-control" id="exampleInputProdQuan" placeholder="Enter Product Quantity">
+  </div>
+  <button type="submit" class="btn btn-primary">Confirm Order</button>
+</form>
+        </div>
+      <!-- Grid column -->
+      <hr class="clearfix w-100 d-md-none pb-3">
+      <div class="col-md-6 mb-md-0 mb-3">
+        <ul class="list-unstyled">
+          <li >
+            <a href="productView?val={{prod.id}}" ><img src="/media/{{prod.product_image}}" width="500" height="500"></a>
+          </li>
+        </ul>
+      </div>
+      <!-- Grid column -->
+</div>
+{% endblock %}
